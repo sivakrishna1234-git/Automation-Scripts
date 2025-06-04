@@ -1,0 +1,56 @@
+//Source code file
+
+package ScenariobasedPom;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class LoginPage {
+	
+	WebDriver driver; 
+	
+	@FindBy(xpath="//input[@class='r4vIwl BV+Dqf']")
+	WebElement phonenumber;
+	@FindBy(xpath="//button[@class='QqFHMw twnTnD _7Pd1Fp']")
+	WebElement submit;
+	
+	 LoginPage(WebDriver driver) 
+	{
+	PageFactory.initElements(driver, this);	
+	}
+	public void phonenumber() {
+		phonenumber.sendKeys("8978235819");
+	}
+	public void submit() {
+		submit.click();
+	}
+
+}
+
+//Test Case:
+
+package ScenariobasedPom;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver;
+		System.setProperty("WebDriver.ChromeDriver.com",  "C:/Users/sivakrishna.s/Desktop/selenium jarfiles/chromedriver.exe");
+		 driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		driver.get("https://www.flipkart.com/account/login?ret=/");
+		
+		LoginPage lp=new LoginPage(driver);
+
+lp.phonenumber();
+		lp.submit();
+	}
+
+}
