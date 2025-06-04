@@ -1,0 +1,146 @@
+Declera the Before method and after method:
+
+package TestNG;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+public class Class1 {
+	 protected ChromeDriver driver;
+	@BeforeMethod
+	public void LaunchBrowser() {
+		System.setProperty("webdriver.chromdriver.com", "C:/Users/sivakrishna.s/Desktop/selenium jarfiles/chromedriver.exe");
+		 driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		 
+		
+
+	}
+	
+	@AfterMethod
+	
+	public void close() {
+		driver.quit();
+	}
+}
+
+
+@Test Classes: Test Scripts
+
+Test Scripta1:
+
+package TestNG;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+public class Class2 extends Class1{
+	@Test
+	public void cart() throws InterruptedException {
+		driver.get("https://www.amazon.in/");
+		Thread.sleep(20000);
+		String d=driver.getTitle();
+		System.out.println(d);
+		driver.findElement(By.id("nav-link-accountList-nav-line-1")).click();
+		WebElement user=driver.findElement(By.name("email"));
+		user.sendKeys("8978235819");
+		WebElement con=driver.findElement(By.xpath("//*[@type='submit']"));
+		con.click();
+		WebElement pass=driver.findElement(By.name("password"));
+		pass.sendKeys("Siva@123");
+		WebElement signin=driver.findElement(By.id("signInSubmit"));
+		signin.click();
+		Thread.sleep(5000);
+	}
+}
+
+
+Test Scripts2:
+
+package TestNG;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+public class Class3 extends Class1 {
+	
+		@Test
+		public void list() throws InterruptedException {
+
+			driver.get("https://www.facebook.com/login.php/");
+			Thread.sleep(5000);
+			driver.findElement(By.name("email")).sendKeys("6300099858");
+			driver.findElement(By.name("pass")).sendKeys("8978235819");
+		    WebElement login=	driver.findElement(By.name("login"));
+		    login.click();
+			String c=driver.getTitle();
+			System.out.println(c);
+			Thread.sleep(10000);
+		}
+
+}
+
+Test Scripts3:
+
+package TestNG;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+public class FileUpload extends Class1 {
+  @Test(invocationCount=5)
+  public void f() throws InterruptedException {
+	  driver.get("https://www.tutorialspoint.com/selenium/practice/selenium_automation_practice.php");
+		WebElement upload=driver.findElement(By.id("picture"));
+      Thread.sleep(5000);
+		upload.sendKeys("C:\\Users\\sivakrishna.s\\Downloads\\SivakrishnaSannuResume (1).pdf");
+		driver.close();
+
+  }
+}
+
+Test Scripts4:
+
+package TestNG;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+public class FileUpload extends Class1 {
+  @Test(invocationCount=5)
+  public void f() throws InterruptedException {
+	  driver.get("https://www.tutorialspoint.com/selenium/practice/selenium_automation_practice.php");
+		WebElement upload=driver.findElement(By.id("picture"));
+      Thread.sleep(5000);
+		upload.sendKeys("C:\\Users\\sivakrishna.s\\Downloads\\SivakrishnaSannuResume (1).pdf");
+		driver.close();
+  }
+}
+
+Test Script5:
+package TestNG;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+
+public class Getwindowandhandles extends Class1{
+  @Test
+  public void f() {
+	  driver.get("https://www.tutorialspoint.com/selenium/practice/browser-windows.php");
+		driver.findElement(By.xpath("(//button[@class=\"btn btn-primary\"])[1]"));
+		String window=driver.getWindowHandle();
+		System.out.println(window);
+		Set<String> list=driver.getWindowHandles();
+		System.out.println(list);
+		driver.quit();
+  }
+}
+
+
